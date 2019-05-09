@@ -16,7 +16,7 @@ namespace UDPEchoServer
             if (connection.State == ConnectionState.Closed)
             {
                 
-                connection.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                connection.ConnectionString = @"Server=tcp:lula.database.windows.net,1433;Initial Catalog=3_semester_projekt;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
                 connection.Open();
             }
             return connection;
@@ -50,7 +50,8 @@ namespace UDPEchoServer
                     //UPDATE table_name
                     //SET column1 = value1, column2 = value2, ...
                     //WHERE id = 0;
-                    cmd.CommandText = $@"insert into PersonData (FK_Person, Hastighed, Acceleration) VALUES ({model.FK_Person}, {model.Hastighed}, {model.Acceleration}')";
+                    cmd.CommandText = $@"insert into PersonData (Hastighed, Acceleration, Dato, Tid, FK_Person) VALUES ({model.Hastighed}, {model.Acceleration}, {model.Dato} , {model.Tid}, {model.FK_Person})";
+                    model.Id = Convert.ToInt32(cmd.ExecuteScalar());
                     cmd.ExecuteNonQuery();
                 }
                 return true;
@@ -75,9 +76,11 @@ namespace UDPEchoServer
         public class PersonDataDTO
         {
             public int Id { get; set; }
-            public int FK_Person { get; set; }
             public int Hastighed { get; set; }
             public double Acceleration { get; set; }
+            public DateTime Dato { get; set; }
+            public string Tid { get; set; }
+            public int FK_Person { get; set; }
         }
     }
 }
