@@ -53,13 +53,13 @@ namespace UDPEchoServer
                     //UPDATE table_name
                     //SET column1 = value1, column2 = value2, ...
                     //WHERE id = 0;
-                    var hash = model.Hastighed.ToString().Replace(",", ".");
-                    var crack = model.Acceleration.ToString().Replace(",", ".");
+                    var hastighedCalculator = model.Hastighed.ToString().Replace(",", ".");
+                    var AccelCalculator = model.Acceleration.ToString().Replace(",", ".");
 
 
                     cmd.CommandText = $@"insert into PersonData 
                         (Hastighed, Acceleration, Tid, FK_Person) VALUES 
-                ({hash}, {crack},'{model.Tid}', {model.FK_Person})";
+                ({hastighedCalculator}, {AccelCalculator},'{model.Tid}', {model.FK_Person})";
                     
                     cmd.ExecuteNonQuery();
                 }

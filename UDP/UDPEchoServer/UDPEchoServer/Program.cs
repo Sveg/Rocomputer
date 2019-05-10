@@ -32,15 +32,11 @@ namespace UDPEchoServer
                 var listTid = new List<DateTime>();
                 while (true)
                 {
-                    //Køre den egentlig hele tiden altid? Yep, det en while True. Rgr så kan vi godt risikere at den flyder lidt imellem 0-1
+                    
                     Byte[] receiveBytes = udpServer.Receive(ref RemoteIpEndPoint);
-                    //Den stopper her efter de 10 stk, nogen mulighed for at breake hvis den ikke giver svar eller noget?
-                    // jep. Let me show.
-                    //Server is now activated");
-                    //Du har bare sammensat de to metoder rigt? Så ren skriver jeg den lige nemlig
-                    //well den kører nu :D, bare mere end 10 gange :D
+                   
                     string receivedData = Encoding.ASCII.GetString(receiveBytes);
-                    //Kan du finde dit python frem
+                    
                     if (receivedData.Contains("stop"))
                         break;
 
@@ -73,17 +69,17 @@ namespace UDPEchoServer
                 var firstTime = listTid.First();
                 var time = lastTime - firstTime;
                 decimal accel = avg * tryngdekraft;
-                //Hvad er det du skal regne ud fra tiden, er det ms? 
+                
                 var hastighed = accel * Convert.ToInt16(time.Seconds);
                 
-                // thats it. Der sker ikke mere.
+                
                 Person.PersonDTO person = new Person.PersonDTO();
                 person.Fornavn = "Frank";
                 person.Efternavn = "Larsen";
                 person.Email = "lol@lol.dk";
                 person.Data.Acceleration = Convert.ToDecimal(accel);
                 person.Data.Hastighed = Convert.ToDecimal(hastighed);
-                person.Data.Tid = "test";
+                person.Data.Tid = Convert.ToString(time);
                 
 
                 var success = Person.createPerson(person);
