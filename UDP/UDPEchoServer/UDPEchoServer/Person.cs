@@ -33,8 +33,8 @@ namespace UDPEchoServer
                 using (var cmd = connection.CreateCommand())
                 {
                     //Vi skal have id til at auto generere i dben, så skulle det virke :D okay ty :D 
-                    cmd.CommandText = $@"insert into Person (Email, Fornavn, Efternavn) VALUES ('{model.Email}','{model.Fornavn}', '{model.Efternavn}');SELECT SCOPE_IDENTITY()";
-                    model.Email = Convert.ToString(cmd.ExecuteScalar());
+                    cmd.CommandText = $@"insert into Person (Email, Fornavn, Efternavn) VALUES ('{model.Email}','{model.Fornavn}', '{model.Efternavn}')";
+                    cmd.ExecuteNonQuery();
                     model.Data.FK_Email = model.Email;
                 }
 
@@ -84,24 +84,13 @@ namespace UDPEchoServer
         }
         public class PersonDataDTO
         {
-            private static int nextId;
             public int Id { get; set; }
             public decimal Hastighed { get; set; }
             public decimal Acceleration { get; set; }
             public string Tid { get; set; }
             public string FK_Email { get; set; }
 
-            public PersonDataDTO()
-            {
-                if (Id == 0 || Id == null)
-                {
-                    Id = Id + 1;
-                }
-                else if (Id == 1)
-                {
-                    Id = nextId++;
-                }
-            }
+            
         }
     }
 }
