@@ -76,4 +76,4 @@ def sendData(event):
 			sense.stick.direction_right = stop
 while True:
 	sense.stick.direction_middle = sendData
-	
+	#lol	
