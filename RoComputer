@@ -19,7 +19,6 @@ redpixel = [
 	r, r, r, r, r, r, r, r
 ]
 
-#lol
 yellowpixel = [
 	y, y, y, y, y, y, y, y,
 	y, y, y, y, y, y, y, y,
