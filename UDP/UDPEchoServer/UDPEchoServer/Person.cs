@@ -32,8 +32,8 @@ namespace UDPEchoServer
             {
                 using (var cmd = connection.CreateCommand())
                 {
-                    //Vi skal have id til at auto generere i dben, så skulle det virke :D okay ty :D 
-                    cmd.CommandText = $@"insert into Person (Email, Fornavn, Efternavn) VALUES ('{model.Email}','{model.Fornavn}', '{model.Efternavn}')";
+                    
+                    cmd.CommandText = $@"if not exists(select top 1 * from Person where email = '{model.Email}') insert into Person (Email, Fornavn, Efternavn) VALUES ('{model.Email}','{model.Fornavn}', '{model.Efternavn}')";
                     cmd.ExecuteNonQuery();
                     model.Data.FK_Email = model.Email;
                 }
