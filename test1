@@ -1,0 +1,19 @@
+from sense_hat import SenseHat, ACTION_RELEASED, ACTION_HELD, ACTION_PRESSED
+import time
+import socket
+sense = SenseHat()
+udpport = 1212
+
+from datetime import datetime
+
+def test1(event):
+	if event.action != ACTION_PRESSED:
+		amount = 0
+		while True:
+			amount = amount + 1
+			print(amount)
+			time.sleep(1)
+
+test1(event)
+sense.stick.direction_middle = test1
+	
