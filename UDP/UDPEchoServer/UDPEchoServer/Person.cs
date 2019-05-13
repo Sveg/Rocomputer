@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,14 +27,15 @@ namespace UDPEchoServer
 
         public static bool createPerson(PersonDTO model)
         {
+            //help
             try
             {
                 using (var cmd = connection.CreateCommand())
                 {
                     //Vi skal have id til at auto generere i dben, så skulle det virke :D okay ty :D 
-                    cmd.CommandText = $@"insert into Person (Fornavn, Efternavn, Email) VALUES ('{model.Fornavn}', '{model.Efternavn}', '{model.Email}');SELECT SCOPE_IDENTITY()";
-                    model.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    model.Data.FK_Person = model.Id;
+                    cmd.CommandText = $@"insert into Person (Email, Fornavn, Efternavn) VALUES ('{model.Email}','{model.Fornavn}', '{model.Efternavn}');SELECT SCOPE_IDENTITY()";
+                    model.Email = Convert.ToString(cmd.ExecuteScalar());
+                    model.Data.FK_Email = model.Email;
                 }
 
             }
@@ -58,8 +60,8 @@ namespace UDPEchoServer
 
 
                     cmd.CommandText = $@"insert into PersonData 
-                        (Hastighed, Acceleration, Tid, FK_Person) VALUES 
-                ({hastighedCalculator}, {AccelCalculator},'{model.Tid}', {model.FK_Person})";
+                        (Hastighed, Acceleration, Tid, FK_Email) VALUES 
+                ({hastighedCalculator}, {AccelCalculator},'{model.Tid}', '{model.FK_Email}')";
                     
                     cmd.ExecuteNonQuery();
                 }
@@ -73,22 +75,33 @@ namespace UDPEchoServer
 
         public class PersonDTO
         {
-            
-            public int Id { get; set; }
             public string Fornavn { get; set; }
             public string Efternavn { get; set; }
             public string Email { get; set; }
             public PersonDataDTO Data { get; set; } = new PersonDataDTO();
-        
 
+            
         }
         public class PersonDataDTO
         {
+            private static int nextId;
             public int Id { get; set; }
             public decimal Hastighed { get; set; }
             public decimal Acceleration { get; set; }
             public string Tid { get; set; }
-            public int FK_Person { get; set; }
+            public string FK_Email { get; set; }
+
+            public PersonDataDTO()
+            {
+                if (Id == 0 || Id == null)
+                {
+                    Id = Id + 1;
+                }
+                else if (Id == 1)
+                {
+                    Id = nextId++;
+                }
+            }
         }
     }
 }
