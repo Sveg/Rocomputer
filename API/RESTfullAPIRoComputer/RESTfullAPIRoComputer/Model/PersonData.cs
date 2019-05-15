@@ -15,7 +15,7 @@ namespace RESTfullAPIRoComputer
 
         public override string ToString()
         {
-            return $"ID: {Id} ID: {Hastighed} ID: {Acceleration} ID: {Tid} ID: {FkEmail}";
+            return $"ID: {Id} ID: {Hastighed} ID: {Acceleration} ID: {Tid} ID: {FkEmail}"; //lol
         }
     }
 }
