@@ -21,13 +21,13 @@ namespace RESTfullAPIRoComputer.Controllers
 
         // GET: api/RoComputer/email
         [HttpGet("{email}", Name = "Get")]
-        public PersonData GetStats(string email)
+        public List<PersonData> GetStats(string email)
         {
             using (RoComputerContext context = new RoComputerContext())
             {
-                return context.PersonData.FirstOrDefault(e => e.FkEmail == email);
+               return context.PersonData.Where(p => p.FkEmail == email).ToList<PersonData>();
             }
-                
+
         }
 
         // POST: api/RoComputer

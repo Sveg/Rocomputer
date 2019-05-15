@@ -12,5 +12,10 @@ namespace RESTfullAPIRoComputer
         public string FkEmail { get; set; }
 
         public virtual Person FkEmailNavigation { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} ID: {Hastighed} ID: {Acceleration} ID: {Tid} ID: {FkEmail}"; //lol
+        }
     }
 }
