@@ -74,9 +74,9 @@ namespace UDPEchoServer
                 
                 
                 Person.PersonDTO person = new Person.PersonDTO();
-                person.Fornavn = "Frank";
+                person.Fornavn = "Luca";
                 person.Efternavn = "Larsen";
-                person.Email = "lol@lol15.dk";
+                person.Email = "lucalarsen123@gmail.com";
                 person.Data.Acceleration = Convert.ToDecimal(accel);
                 person.Data.Hastighed = Convert.ToDecimal(hastighed);
                 person.Data.Tid = Convert.ToString(time);

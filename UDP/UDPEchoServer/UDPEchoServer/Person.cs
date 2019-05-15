@@ -52,12 +52,10 @@ namespace UDPEchoServer
             {
                 using (var cmd = connection.CreateCommand())
                 {
-                    //UPDATE table_name
-                    //SET column1 = value1, column2 = value2, ...
-                    //WHERE id = 0;
+                   
                     var hastighedCalculator = model.Hastighed.ToString().Replace(",", ".");
                     var AccelCalculator = model.Acceleration.ToString().Replace(",", ".");
-
+                    
 
                     cmd.CommandText = $@"insert into PersonData 
                         (Hastighed, Acceleration, Tid, FK_Email) VALUES 
