@@ -2004,12 +2004,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
+var uri = "https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/";
 var element = document.getElementById("content");
 var GetStats = document.getElementById("get");
 GetStats.addEventListener("click", getstats);
+var ContentElement = document.getElementById("content");
+var GetAllStats = document.getElementById("getAll");
+GetAllStats.addEventListener("click", ShowAllStats);
+function CreateLiElement(text, classAttribute, id) {
+    var newLiElement = document.createElement("li");
+    var NewText = document.createTextNode(text);
+    newLiElement.setAttribute("class", classAttribute);
+    newLiElement.setAttribute("id", id.toString());
+    newLiElement.appendChild(NewText);
+    return newLiElement;
+}
+function ShowAllStats() {
+    var test = document.getElementById("useremail");
+    var id = document.getElementById("input").value;
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + test)
+        .then(function (response) {
+        var ulElement = document.createElement("ul");
+        var x = 0;
+        response.data.forEach(function (data) {
+            x++;
+            if (data == null) {
+                ulElement.appendChild(CreateLiElement("NULL element", "error", x));
+            }
+            else {
+                var tekst = "ID p\u00E5 Turen: " + data.id + " Hastighed: " + data.hastighed + " Acceleration: " + data.acceleration + " Tid: " + data.tid + " Email: " + data.fkEmail;
+                ulElement.appendChild(CreateLiElement(tekst, "r1", data.id));
+            }
+        });
+        if (ContentElement.firstChild)
+            ContentElement.removeChild(ContentElement.firstElementChild);
+        ContentElement.appendChild(ulElement);
+    })
+        .catch(function (error) {
+        ContentElement.innerHTML = error.message;
+    });
+}
 function getstats() {
     var id = document.getElementById("input").value;
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/" + id)
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + id)
         .then(function (Response) {
         console.log(Response);
         var result = "";
