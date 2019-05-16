@@ -29,17 +29,13 @@ namespace RESTfullAPIRoComputer.Controllers
             }
 
         }
-        [HttpPost]
+        [HttpPost()]
         public bool Login([FromBody] Person person)
         {
             return Person.Login(person);
         }
 
         // POST: api/RoComputer
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
         // PUT: api/RoComputer/5
         [HttpPut("{id}")]

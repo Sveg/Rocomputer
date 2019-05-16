@@ -15,6 +15,8 @@ namespace RESTfullAPIRoComputer
         public static void Main(string[] args)
         {
             Person.GetConnection();
+            
+
 
             CreateWebHostBuilder(args).Build().Run();
            
