@@ -3,65 +3,22 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>RoComputer Data</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="454085695360-930t8j6994hvkeirpo5lrf5o9qmamc0s.apps.googleusercontent.com">
+  
+  <meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="390686705404-u7be0qc3gjam1h611r45ttq99jvtlnsh.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 </head>
 
 <body>  
-  <div class="container">
-
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <script>
-      function onSignIn(googleUser) {
-       // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        // var id_token = googleUser.getAuthResponse().id_token;
-        // console.log("ID Token: " + id_token);
-        
-        var para = document.createElement("P");                       // Create a <p> node
-        var t = document.createTextNode(profile.getEmail());      // Create a text node
-        para.appendChild(t);                                          // Append the text to <p>
-        document.getElementById("user").appendChild(para);           // Append <p> to <div> with id="myDIV"
-        document.getElementsByTagName("p")[0].setAttribute("id", "useremail");
-        }
-    </script>
- 
-<a href="#" onclick="signOut();">Sign out</a>
-<script>
-  
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-    var element = document.getElementById("user");   // Get the <ul> element with id="myList"
-    element.removeChild(element.childNodes[0]);           // Remove <ul>'s first child node (index 0)
-  }
-</script>
-
+  <div id="content"></div>
     <div>
+        <div id="my-signin2"></div>
+        button should appear above
       <input id="input" placeholder="Indtast din Email" type="text" name="input">
       <br>
       <button id="get">Få din data udskrevet</button>
     </div>
-    <br>
-    <div>
-      <button id="getAll">Få alle ture skrevet ud</button>
-    </div>
-    <div id="content"></div>
-  </div>
-  <div id="user"></div>
   <script src="bundle.js"></script>
 </body>
 </html>

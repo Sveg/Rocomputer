@@ -2005,12 +2005,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
 var uri = "https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/";
-var element = document.getElementById("content");
-var GetStats = document.getElementById("get");
-GetStats.addEventListener("click", getstats);
+//     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
+// let GetStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("get");
+// GetStats.addEventListener("click", getstats);
 var ContentElement = document.getElementById("content");
-var GetAllStats = document.getElementById("getAll");
-GetAllStats.addEventListener("click", ShowAllStats);
+// let GetAllStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAll");
+// GetAllStats.addEventListener("click", ShowAllStats);
 function CreateLiElement(text, classAttribute, id) {
     var newLiElement = document.createElement("li");
     var NewText = document.createTextNode(text);
@@ -2053,6 +2053,61 @@ function getstats() {
         Response.data.forEach(function (Data) {
             result += "";
         });
+    })
+        .catch(function (error) {
+        console.log(error);
+    });
+}
+// aadsadsadasdasdasdasdasdasdasdasdasdadas
+console.log('Load Google login');
+//Use email from obj in ShowAllStats instead of input useremail
+var user = {
+    email: '',
+    firstname: '',
+    lastname: '',
+    id: -1,
+    token: ''
+};
+addGoogleSignin();
+function addGoogleSignin() {
+    //<div id="my-signin2"></div> <-- add to html
+    gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 241,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': function (param) {
+            console.log('onsuccess');
+            onSignIn(param);
+        }
+    });
+}
+function onSignIn(googleUser) {
+    console.log('On sign in');
+    var basic = googleUser.getBasicProfile();
+    var auth = googleUser.getAuthResponse();
+    user.id = googleUser.getId();
+    user.firstname = basic.ofa;
+    user.email = basic.U3;
+    user.lastname = basic.wea;
+    user.token = auth.id_token;
+    var obj = {
+        Email: user.email,
+        Fornavn: user.firstname,
+        Efternavn: user.lastname
+    };
+    login(obj);
+    //call to api with obj
+}
+;
+function login(obj) {
+    console.log(obj);
+    console.log('Login');
+    var url = 'https://restfullapirocomputer.azurewebsites.net/api/RoComputer';
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, obj)
+        .then(function (Response) {
+        console.log(Response.status);
     })
         .catch(function (error) {
         console.log(error);
