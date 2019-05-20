@@ -1,4 +1,4 @@
-import { IUser } from "./User";
+import { IUser } from "./IUser";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "../../node_modules/axios/index";
 import { IData } from "./IData";
 
@@ -47,6 +47,7 @@ function onSignIn(googleUser: any) {
     }
     login(obj);
     //call to api with obj
+    
 };
   
 function login(obj: any) {

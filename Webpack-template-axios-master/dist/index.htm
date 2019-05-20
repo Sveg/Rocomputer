@@ -13,11 +13,22 @@
 <body>  
   <div id="content"></div>
     <div>
-        <div id="my-signin2"></div>
-        button should appear above
-      <input id="input" placeholder="Indtast din Email" type="text" name="input">
+      <div id="my-signin2"></div>
+    </div>
+    <div>
+
+      <a href="#" onclick="signOut();">Sign out</a>
+      <script>
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+          console.log('User signed out.');
+          });
+
+        }
+      </script>
       <br>
-      <button id="get">Få din data udskrevet</button>
+            <a href="info.htm">link til side 2</a>
     </div>
   <script src="bundle.js"></script>
 </body>

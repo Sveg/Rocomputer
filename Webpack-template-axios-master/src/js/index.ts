@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "../../node_modules/axios/index"
 import { IData } from "./IData";
-import { IUser } from "./User";
+import { IUser } from "./IUser";
 const uri: string = "https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/";
 
 //     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
@@ -8,78 +8,78 @@ const uri: string = "https://restfullapirocomputer20190513120657.azurewebsites.n
 // GetStats.addEventListener("click", getstats);
 
 let ContentElement : HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-// let GetAllStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAll");
+let GetAllStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAll");
 // GetAllStats.addEventListener("click", ShowAllStats);
 
 
 
-function CreateLiElement(text:string, classAttribute:string, id:number) : HTMLLIElement{
-    let newLiElement = document.createElement("li");
-    let NewText = document.createTextNode(text);
+// function CreateLiElement(text:string, classAttribute:string, id:number) : HTMLLIElement{
+//     let newLiElement = document.createElement("li");
+//     let NewText = document.createTextNode(text);
 
-    newLiElement.setAttribute("class", classAttribute);
-    newLiElement.setAttribute("id", id.toString());
+//     newLiElement.setAttribute("class", classAttribute);
+//     newLiElement.setAttribute("id", id.toString());
 
-    newLiElement.appendChild(NewText);
+//     newLiElement.appendChild(NewText);
 
-    return newLiElement;
-}
+//     return newLiElement;
+// }
 
-function ShowAllStats() : void {
-    let test = (<HTMLParagraphElement>document.getElementById("useremail"))
-    let id: string = (<HTMLInputElement>document.getElementById("input")).value
-    axios.get<IData[]>(uri + test)
+// function ShowAllStats() : void {
+//     let test = (<HTMLParagraphElement>document.getElementById("useremail"))
+//     let id: string = (<HTMLInputElement>document.getElementById("input")).value
+//     axios.get<IData[]>(uri + user.email)
 
-    .then(function(response:AxiosResponse<IData[]>):void{
-        let ulElement : HTMLUListElement = document.createElement("ul");
+//     .then(function(response:AxiosResponse<IData[]>):void{
+//         let ulElement : HTMLUListElement = document.createElement("ul");
         
-        let x: number = 0;
+//         let x: number = 0;
 
-        response.data.forEach((data:IData) => {
-            x++;
-            if (data == null)
-            {
-                ulElement.appendChild(CreateLiElement("NULL element","error",x));
-            }
-            else
-            {
-                let tekst : string = `ID på Turen: ${data.id} Hastighed: ${data.hastighed} Acceleration: ${data.acceleration} Tid: ${data.tid} Email: ${data.fkEmail}`;
-                ulElement.appendChild(CreateLiElement(tekst,"r1",data.id))
-            }
-        });
+//         response.data.forEach((data:IData) => {
+//             x++;
+//             if (data == null)
+//             {
+//                 ulElement.appendChild(CreateLiElement("NULL element","error",x));
+//             }
+//             else
+//             {
+//                 let tekst : string = `ID på Turen: ${data.id} Hastighed: ${data.hastighed} Acceleration: ${data.acceleration} Tid: ${data.tid} Email: ${data.fkEmail}`;
+//                 ulElement.appendChild(CreateLiElement(tekst,"r1",data.id))
+//             }
+//         });
 
-        if (ContentElement.firstChild) 
+//         if (ContentElement.firstChild) 
         
-            ContentElement.removeChild(ContentElement.firstElementChild);
-            ContentElement.appendChild(ulElement);
-        }
-        )
-        .catch(function (error:AxiosError):void{
-            ContentElement.innerHTML = error.message;
-        })
+//             ContentElement.removeChild(ContentElement.firstElementChild);
+//             ContentElement.appendChild(ulElement);
+//         }
+//         )
+//         .catch(function (error:AxiosError):void{
+//             ContentElement.innerHTML = error.message;
+//         })
         
-}
+// }
 
 
-function getstats(): void{
+// function getstats(): void{
 
-    let id: string = (<HTMLInputElement>document.getElementById("input")).value
-    axios.get<IData[]>(uri + id)
+//     let id: string = (<HTMLInputElement>document.getElementById("input")).value
+//     axios.get<IData[]>(uri + id)
 
-        .then(function (Response: AxiosResponse<IData[]>): void{
-            console.log(Response);
-            let result = ``;
-            Response.data.forEach((Data: IData) => {
-                result += ``;
+//         .then(function (Response: AxiosResponse<IData[]>): void{
+//             console.log(Response);
+//             let result = ``;
+//             Response.data.forEach((Data: IData) => {
+//                 result += ``;
                 
                 
                 
-            });
-        })
-        .catch(function (error: AxiosError): void{
-        console.log(error)
-    })
-}
+//             });
+//         })
+//         .catch(function (error: AxiosError): void{
+//         console.log(error)
+//     })
+// }
 
 
 // aadsadsadasdasdasdasdasdasdasdasdasdadas
@@ -133,12 +133,13 @@ function onSignIn(googleUser: any) {
     }
     login(obj);
     //call to api with obj
+
 };
   
 function login(obj: any) {
     console.log(obj);
     console.log('Login');
-    var url = 'https://restfullapirocomputer.azurewebsites.net/api/RoComputer';
+    var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
     axios.post<IData>(url, obj)
       .then(function (Response: AxiosResponse<IData>): void {
         console.log(Response.status);
@@ -146,4 +147,6 @@ function login(obj: any) {
       .catch(function (error: AxiosError): void {
         console.log(error);
       });
+
 }
+
