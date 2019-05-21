@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/API/*.sln'
+  solution: '**/API/RESTfullAPIRoComputer/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
