@@ -25,7 +25,7 @@ namespace RESTfullAPIRoComputer.Model
             UdpClient udpServer = new UdpClient(1111); // UDP Port
             IPAddress ip = IPAddress.Parse("192.168.24.142"); // sætter en ip
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(ip, 1111); // laver et remote End point
-            Console.WriteLine("Ready to gather data"); // Giver en besked, så vi ved vi er connected
+            //Console.WriteLine("Ready to gather data"); // Giver en besked, så vi ved vi er connected
             var list = new List<decimal>(); // laver en liste til vores data
             var listTid = new List<DateTime>(); // laver en liste til vores tid
             try
@@ -38,7 +38,7 @@ namespace RESTfullAPIRoComputer.Model
                     if (receivedData.Contains("stop")) // metode til at gemme data
                     {
                         var success = saveData(list, listTid, person); // Kalder saveData Metoden
-                        Console.WriteLine("Saved data: " + success); //Udskriver om data'en er gemt ordentligt
+                        //Console.WriteLine("Saved data: " + success); //Udskriver om data'en er gemt ordentligt
                         list.Clear(); // Tømmer listen til vi skal gemme noget nyt
                         listTid.Clear(); // tømmer listen til vi skal gemme noget nyt
                     }
@@ -53,12 +53,14 @@ namespace RESTfullAPIRoComputer.Model
                         if (!string.IsNullOrEmpty(data[3])) // tjekker om en string ikke er null, eller tom på datafelt 3.
                             tid = Convert.ToDateTime(data[3]); // Convertere string over til datetime
                         string text = "Tid: " + tid.ToString() + " Force: " + force; // en variable med vores modtaget data
-                        Console.WriteLine(text); // udskriver vores modtaget data
+                        //Console.WriteLine(text); // udskriver vores modtaget data
                         list.Add(force); // tilføjer vores modtaget data til en liste af decimal
                         listTid.Add(tid); // tilføjere vores tid til en liste af tid.
-                        string sendData = "Server: " + text.ToUpper(); // serveren sender
-                        Byte[] sendBytes = Encoding.ASCII.GetBytes(sendData); // 
-                        udpServer.Send(sendBytes, sendBytes.Length, RemoteIpEndPoint); //
+                        //string sendData = "Server: " + text.ToUpper(); // serveren sender
+                        //Byte[] sendBytes = Encoding.ASCII.GetBytes(sendData); // 
+                        //udpServer.Send(sendBytes, sendBytes.Length, RemoteIpEndPoint); //
+
+                        //Console.WriteLine(text);
                     }
                 }
             }

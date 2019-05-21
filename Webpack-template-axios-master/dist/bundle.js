@@ -2004,63 +2004,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
-var uri = "https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/";
+var uri = "https://restfullapirocomputer.azurewebsites.net/api/RoComputer/";
+var uri2 = 'https://localhost:44341/api/rocomputer/';
 //     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
 // let GetStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("get");
 // GetStats.addEventListener("click", getstats);
-var ContentElement = document.getElementById("content");
-var GetAllStats = document.getElementById("getAll");
-// GetAllStats.addEventListener("click", ShowAllStats);
-// function CreateLiElement(text:string, classAttribute:string, id:number) : HTMLLIElement{
-//     let newLiElement = document.createElement("li");
-//     let NewText = document.createTextNode(text);
-//     newLiElement.setAttribute("class", classAttribute);
-//     newLiElement.setAttribute("id", id.toString());
-//     newLiElement.appendChild(NewText);
-//     return newLiElement;
-// }
-// function ShowAllStats() : void {
-//     let test = (<HTMLParagraphElement>document.getElementById("useremail"))
-//     let id: string = (<HTMLInputElement>document.getElementById("input")).value
-//     axios.get<IData[]>(uri + user.email)
-//     .then(function(response:AxiosResponse<IData[]>):void{
-//         let ulElement : HTMLUListElement = document.createElement("ul");
-//         let x: number = 0;
-//         response.data.forEach((data:IData) => {
-//             x++;
-//             if (data == null)
-//             {
-//                 ulElement.appendChild(CreateLiElement("NULL element","error",x));
-//             }
-//             else
-//             {
-//                 let tekst : string = `ID på Turen: ${data.id} Hastighed: ${data.hastighed} Acceleration: ${data.acceleration} Tid: ${data.tid} Email: ${data.fkEmail}`;
-//                 ulElement.appendChild(CreateLiElement(tekst,"r1",data.id))
-//             }
-//         });
-//         if (ContentElement.firstChild) 
-//             ContentElement.removeChild(ContentElement.firstElementChild);
-//             ContentElement.appendChild(ulElement);
-//         }
-//         )
-//         .catch(function (error:AxiosError):void{
-//             ContentElement.innerHTML = error.message;
-//         })
-// }
-// function getstats(): void{
-//     let id: string = (<HTMLInputElement>document.getElementById("input")).value
-//     axios.get<IData[]>(uri + id)
-//         .then(function (Response: AxiosResponse<IData[]>): void{
-//             console.log(Response);
-//             let result = ``;
-//             Response.data.forEach((Data: IData) => {
-//                 result += ``;
-//             });
-//         })
-//         .catch(function (error: AxiosError): void{
-//         console.log(error)
-//     })
-// }
 // aadsadsadasdasdasdasdasdasdasdasdasdadas
 console.log('Load Google login');
 //Use email from obj in ShowAllStats instead of input useremail
@@ -2108,6 +2056,7 @@ function login(obj) {
     console.log(obj);
     console.log('Login');
     var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
+    var url2 = 'https://localhost:44341/api/rocomputer/';
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, obj)
         .then(function (Response) {
         console.log(Response.status);
@@ -2116,6 +2065,55 @@ function login(obj) {
         console.log(error);
     });
 }
+// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+var ContentElement = document.getElementById("content");
+var GetAllStats = document.getElementById("getAll");
+GetAllStats.addEventListener("click", ShowAllStats);
+function CreateLiElement(text, classAttribute, id) {
+    var newLiElement = document.createElement("li");
+    var NewText = document.createTextNode(text);
+    newLiElement.setAttribute("class", classAttribute);
+    newLiElement.setAttribute("id", id.toString());
+    newLiElement.appendChild(NewText);
+    return newLiElement;
+}
+function ShowAllStats() {
+    var test = document.getElementById("useremail");
+    //let id: string = (<HTMLInputElement>document.getElementById("input")).value
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + user.email)
+        .then(function (response) {
+        var ulElement = document.createElement("ul");
+        var x = 0;
+        response.data.forEach(function (data) {
+            x++;
+            if (data == null) {
+                ulElement.appendChild(CreateLiElement("NULL element", "error", x));
+            }
+            else {
+                var tekst = "ID p\u00E5 Turen: " + data.id + " Hastighed: " + data.hastighed + " Acceleration: " + data.acceleration + " Tid: " + data.tid + " Email: " + data.fkEmail;
+                ulElement.appendChild(CreateLiElement(tekst, "r1", data.id));
+            }
+        });
+        if (ContentElement.firstChild)
+            ContentElement.removeChild(ContentElement.firstElementChild);
+        ContentElement.appendChild(ulElement);
+    })
+        .catch(function (error) {
+        ContentElement.innerHTML = error.message;
+    });
+}
+// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+// var express = require('express')
+// var router = express.Router();
+// const options:cors.CorsOptions = {
+//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+//     credentials: true,
+//     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+//     origin: "https://localhost:44341/api/rocomputer/",
+//     preflightContinue: false
+//   };
+// router.use(cors(options));
+// router.options("*", cors(options));
 
 
 /***/ }),
