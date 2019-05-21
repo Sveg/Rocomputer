@@ -26,7 +26,21 @@ namespace RESTfullAPIRoComputer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowSpecificOrigin",
+            //        builder => builder.WithOrigins("https://localhost:44341/api/rocomputer/"));
+
+            //    options.AddPolicy("AllowAnyOrigin",
+            //        builder => builder.AllowAnyOrigin());
+
+            //    options.AddPolicy("AllowAnyOriginGetPost",
+            //                 builder => builder.AllowAnyOrigin().WithMethods("GET", "POST"));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +57,11 @@ namespace RESTfullAPIRoComputer
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseCors(
+                options => {
+                    options.AllowAnyOrigin().AllowAnyMethod();
+                });
             app.UseMvc();
         }
     }

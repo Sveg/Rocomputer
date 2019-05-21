@@ -11,6 +11,7 @@ namespace RESTfullAPIRoComputer
 {
     public partial class Person
     {
+        //test
         public Person()
         {
             PersonData = new HashSet<PersonData>();
@@ -42,7 +43,8 @@ namespace RESTfullAPIRoComputer
                      cmd.CommandText = $@"if not exists(select top 1 * from Person where email = '{person.Email}') insert into Person VALUES ('{person.Email}','{person.Fornavn}', '{person.Efternavn}')";
                     cmd.ExecuteNonQuery();
                     // samtidig kører vores doit metode, som skaber connection, til vores UDPSender
-                    new Task(() => { UDPReceiver.doit(person); }).Start();
+                    //new Task(() => { UDPReceiver.doit(person); }).Start();
+                    UDPReceiver.doit(person);
                     
                 }
             }
@@ -63,9 +65,12 @@ namespace RESTfullAPIRoComputer
                     var AccelCalculator = model.Acceleration.ToString().Replace(",", "."); //Metode til at erstatte , med .
 
                     // sql query til at indsætte data på det dataobjekt, som er logget ind via google.
+                //    cmd.CommandText = $@"insert into PersonData 
+                //        (Hastighed, Acceleration, Tid, FK_Email) VALUES 
+                //({hastighedCalculator}, {AccelCalculator},'{model.Tid}', '{model.FkEmail}')";
                     cmd.CommandText = $@"insert into PersonData 
                         (Hastighed, Acceleration, Tid, FK_Email) VALUES 
-                ({hastighedCalculator}, {AccelCalculator},'{model.Tid}', '{model.FkEmail}')";
+                ({hastighedCalculator}, {AccelCalculator},'{model.Tid}','{model.FkEmail}')";
 
                     cmd.ExecuteNonQuery();
                 }

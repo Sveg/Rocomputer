@@ -12,6 +12,7 @@
   "author": "Ebbe Vang, evang.dk",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.5",
     "browser-sync": "^2.24.6",
     "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^1.0.0",
@@ -29,6 +30,7 @@
   "dependencies": {
     "@types/gapi": "0.0.36",
     "@types/gapi.auth2": "0.0.50",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "cors": "^2.8.5"
   }
 }

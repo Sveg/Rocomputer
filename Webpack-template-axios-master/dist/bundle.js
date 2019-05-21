@@ -2004,60 +2004,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 
-var uri = "https://restfullapirocomputer20190513120657.azurewebsites.net/api/RoComputer/";
+var uri = "https://restfullapirocomputer.azurewebsites.net/api/RoComputer/";
+var uri2 = 'https://localhost:44341/api/rocomputer/';
 //     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
 // let GetStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("get");
 // GetStats.addEventListener("click", getstats);
-var ContentElement = document.getElementById("content");
-// let GetAllStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAll");
-// GetAllStats.addEventListener("click", ShowAllStats);
-function CreateLiElement(text, classAttribute, id) {
-    var newLiElement = document.createElement("li");
-    var NewText = document.createTextNode(text);
-    newLiElement.setAttribute("class", classAttribute);
-    newLiElement.setAttribute("id", id.toString());
-    newLiElement.appendChild(NewText);
-    return newLiElement;
-}
-function ShowAllStats() {
-    var test = document.getElementById("useremail");
-    var id = document.getElementById("input").value;
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + test)
-        .then(function (response) {
-        var ulElement = document.createElement("ul");
-        var x = 0;
-        response.data.forEach(function (data) {
-            x++;
-            if (data == null) {
-                ulElement.appendChild(CreateLiElement("NULL element", "error", x));
-            }
-            else {
-                var tekst = "ID p\u00E5 Turen: " + data.id + " Hastighed: " + data.hastighed + " Acceleration: " + data.acceleration + " Tid: " + data.tid + " Email: " + data.fkEmail;
-                ulElement.appendChild(CreateLiElement(tekst, "r1", data.id));
-            }
-        });
-        if (ContentElement.firstChild)
-            ContentElement.removeChild(ContentElement.firstElementChild);
-        ContentElement.appendChild(ulElement);
-    })
-        .catch(function (error) {
-        ContentElement.innerHTML = error.message;
-    });
-}
-function getstats() {
-    var id = document.getElementById("input").value;
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + id)
-        .then(function (Response) {
-        console.log(Response);
-        var result = "";
-        Response.data.forEach(function (Data) {
-            result += "";
-        });
-    })
-        .catch(function (error) {
-        console.log(error);
-    });
-}
 // aadsadsadasdasdasdasdasdasdasdasdasdadas
 console.log('Load Google login');
 //Use email from obj in ShowAllStats instead of input useremail
@@ -2104,7 +2055,8 @@ function onSignIn(googleUser) {
 function login(obj) {
     console.log(obj);
     console.log('Login');
-    var url = 'https://restfullapirocomputer.azurewebsites.net/api/RoComputer';
+    var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
+    var url2 = 'https://localhost:44341/api/rocomputer/';
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, obj)
         .then(function (Response) {
         console.log(Response.status);
@@ -2113,6 +2065,55 @@ function login(obj) {
         console.log(error);
     });
 }
+// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+var ContentElement = document.getElementById("content");
+var GetAllStats = document.getElementById("getAll");
+GetAllStats.addEventListener("click", ShowAllStats);
+function CreateLiElement(text, classAttribute, id) {
+    var newLiElement = document.createElement("li");
+    var NewText = document.createTextNode(text);
+    newLiElement.setAttribute("class", classAttribute);
+    newLiElement.setAttribute("id", id.toString());
+    newLiElement.appendChild(NewText);
+    return newLiElement;
+}
+function ShowAllStats() {
+    var test = document.getElementById("useremail");
+    //let id: string = (<HTMLInputElement>document.getElementById("input")).value
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + user.email)
+        .then(function (response) {
+        var ulElement = document.createElement("ul");
+        var x = 0;
+        response.data.forEach(function (data) {
+            x++;
+            if (data == null) {
+                ulElement.appendChild(CreateLiElement("NULL element", "error", x));
+            }
+            else {
+                var tekst = "ID p\u00E5 Turen: " + data.id + " Hastighed: " + data.hastighed + " Acceleration: " + data.acceleration + " Tid: " + data.tid + " Email: " + data.fkEmail;
+                ulElement.appendChild(CreateLiElement(tekst, "r1", data.id));
+            }
+        });
+        if (ContentElement.firstChild)
+            ContentElement.removeChild(ContentElement.firstElementChild);
+        ContentElement.appendChild(ulElement);
+    })
+        .catch(function (error) {
+        ContentElement.innerHTML = error.message;
+    });
+}
+// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+// var express = require('express')
+// var router = express.Router();
+// const options:cors.CorsOptions = {
+//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+//     credentials: true,
+//     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+//     origin: "https://localhost:44341/api/rocomputer/",
+//     preflightContinue: false
+//   };
+// router.use(cors(options));
+// router.options("*", cors(options));
 
 
 /***/ }),
