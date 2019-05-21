@@ -17,9 +17,15 @@ variables:
 steps:
 - task: NuGetToolInstaller@0
 
+- script: dotnet pack /p:PackageVersion=$(version)
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: '<Name of the NuGet service connection>'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
 
 - task: VSBuild@1
   inputs:
