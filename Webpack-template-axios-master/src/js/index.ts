@@ -70,7 +70,7 @@ function login(obj: any) {
     console.log('Login');
     var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
     var url2 = 'https://localhost:44341/api/rocomputer/';
-    axios.post<IData>(url, obj)
+    axios.post<IData>(uri, obj)
       .then(function (Response: AxiosResponse<IData>): void {
         console.log(Response.status);
       })
