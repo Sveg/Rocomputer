@@ -6,12 +6,7 @@ import * as cors from "cors";
 const uri: string = "https://restfullapirocomputer.azurewebsites.net/api/RoComputer/";
 var uri2 = 'https://localhost:44341/api/rocomputer/';
 
-//     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
-// let GetStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("get");
-// GetStats.addEventListener("click", getstats);
 
-
-// aadsadsadasdasdasdasdasdasdasdasdasdadas
 
 
 
@@ -31,7 +26,7 @@ let user: IUser = {
 addGoogleSignin();
 
 function addGoogleSignin() {
-    //<div id="my-signin2"></div> <-- add to html
+
     gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
         'width': 241,
@@ -70,7 +65,7 @@ function login(obj: any) {
     console.log('Login');
     var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
     var url2 = 'https://localhost:44341/api/rocomputer/';
-    axios.post<IData>(url, obj)
+    axios.post<IData>(uri, obj)
       .then(function (Response: AxiosResponse<IData>): void {
         console.log(Response.status);
       })
@@ -81,7 +76,7 @@ function login(obj: any) {
 }
 
 
-// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+
 
 let ContentElement : HTMLDivElement = <HTMLDivElement> document.getElementById("content");
 let GetAllStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getAll");
@@ -102,8 +97,7 @@ function CreateLiElement(text:string, classAttribute:string, id:number) : HTMLLI
 }
 
 function ShowAllStats() : void {
-    let test = (<HTMLParagraphElement>document.getElementById("useremail"))
-    //let id: string = (<HTMLInputElement>document.getElementById("input")).value
+
     axios.get<IData[]>(uri + user.email)
 
     .then(function(response:AxiosResponse<IData[]>):void{
@@ -138,19 +132,3 @@ function ShowAllStats() : void {
 
 
 
-// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-
-// var express = require('express')
-// var router = express.Router();
-
-// const options:cors.CorsOptions = {
-//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
-//     credentials: true,
-//     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-//     origin: "https://localhost:44341/api/rocomputer/",
-//     preflightContinue: false
-//   };
-
-// router.use(cors(options));
-
-// router.options("*", cors(options));

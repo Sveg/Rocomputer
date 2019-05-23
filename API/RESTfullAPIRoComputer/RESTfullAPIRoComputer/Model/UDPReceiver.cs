@@ -23,7 +23,7 @@ namespace RESTfullAPIRoComputer.Model
         public static async void doit(Person person)
         {
             UdpClient udpServer = new UdpClient(1111); // UDP Port
-            IPAddress ip = IPAddress.Parse("192.168.24.142"); // sætter en ip
+            IPAddress ip = IPAddress.Parse("192.168.24.13"); // sætter en ip
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(ip, 1111); // laver et remote End point
             //Console.WriteLine("Ready to gather data"); // Giver en besked, så vi ved vi er connected
             var list = new List<decimal>(); // laver en liste til vores data

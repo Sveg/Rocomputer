@@ -2006,10 +2006,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var uri = "https://restfullapirocomputer.azurewebsites.net/api/RoComputer/";
 var uri2 = 'https://localhost:44341/api/rocomputer/';
-//     let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
-// let GetStats: HTMLButtonElement = <HTMLButtonElement>document.getElementById("get");
-// GetStats.addEventListener("click", getstats);
-// aadsadsadasdasdasdasdasdasdasdasdasdadas
 console.log('Load Google login');
 //Use email from obj in ShowAllStats instead of input useremail
 var user = {
@@ -2021,7 +2017,6 @@ var user = {
 };
 addGoogleSignin();
 function addGoogleSignin() {
-    //<div id="my-signin2"></div> <-- add to html
     gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
         'width': 241,
@@ -2057,7 +2052,7 @@ function login(obj) {
     console.log('Login');
     var url = 'https://restfullapirocomputer.azurewebsites.net/api/rocomputer/';
     var url2 = 'https://localhost:44341/api/rocomputer/';
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, obj)
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.post(uri, obj)
         .then(function (Response) {
         console.log(Response.status);
     })
@@ -2065,7 +2060,6 @@ function login(obj) {
         console.log(error);
     });
 }
-// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
 var ContentElement = document.getElementById("content");
 var GetAllStats = document.getElementById("getAll");
 GetAllStats.addEventListener("click", ShowAllStats);
@@ -2078,8 +2072,6 @@ function CreateLiElement(text, classAttribute, id) {
     return newLiElement;
 }
 function ShowAllStats() {
-    var test = document.getElementById("useremail");
-    //let id: string = (<HTMLInputElement>document.getElementById("input")).value
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri + user.email)
         .then(function (response) {
         var ulElement = document.createElement("ul");
@@ -2102,18 +2094,6 @@ function ShowAllStats() {
         ContentElement.innerHTML = error.message;
     });
 }
-// jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-// var express = require('express')
-// var router = express.Router();
-// const options:cors.CorsOptions = {
-//     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
-//     credentials: true,
-//     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-//     origin: "https://localhost:44341/api/rocomputer/",
-//     preflightContinue: false
-//   };
-// router.use(cors(options));
-// router.options("*", cors(options));
 
 
 /***/ }),
